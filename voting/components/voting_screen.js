@@ -1,96 +1,203 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { StyleSheet, Text } from 'react-native';
+import { Dropdown } from 'react-native-material-dropdown';
+ 
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 class VotingScreen extends React.Component {
 
     constructor(props){
       super(props);
+
+      this.vote = this.vote.bind(this);
+      this.onChangeText = this.onChangeText.bind(this);
     }
 
   componentDidMount() {
+    this.setState({
+      pizzaSelected: 'none',
+    });
+
     this.props.pizzasToVote = [
       {
-        key: 'APRESUNTADA'
+        value: 'APRESUNTADA',
       },
       {
-        key: 'CROCANTE'
+        value: 'CROCANTE',
       },
       {
-        key: 'MILHO'
+        value: 'MILHO',
       },
       {
-        key: 'MUSSARELA'
+        value: 'MUSSARELA',
       },
       {
-        key: 'TRADICIONAL'
+        value: 'TRADICIONAL',
       },
       {
-        key: 'ALHO E ÓLEO'
+        value: 'ALHO E ÓLEO',
       },
       {
-        key: 'BACON'
+        value: 'BACON',
       },
       {
-        key: 'CALABRESA'
+        value: 'CALABRESA',
       },
       {
-        key: 'ESCAROLA'
+        value: 'ESCAROLA',
       },
       {
-        key: 'FRANGO'
+        value: 'FRANGO',
       },
       {
-        key: 'FRANGO C/ CATUPIRY'
+        value: 'FRANGO C/ CATUPIRY',
       },
       {
-        key: 'FRAN-MILHO'
+        value: 'FRAN-MILHO',
       },
       {
-        key: 'MARGUERITA'
+        value: 'MARGUERITA',
       },
       {
-        key: 'MEXICANA'
+        value: 'MEXICANA',
       },
       {
-        key: 'NAPOLITANA'
+        value: 'NAPOLITANA',
       },
       {
-        key: 'PAULISTA'
+        value: 'PAULISTA',
       },
       {
-        key: 'PORTUGUESA'
+        value: 'PORTUGUESA',
       },
       {
-        key: 'TOSCANA'
+        value: 'TOSCANA',
       },
       {
-        key: 'ALICHE'
+        value: 'ALICHE',
       },
       {
-        key: 'AMARELINHA'
+        value: 'AMARELINHA',
       },
       {
-        key: 'ATUM'
+        value: 'ATUM',
       },
       {
-        key: 'CAMPESTRE'
+        value: 'CAMPESTRE',
       },
       {
-        key: 'CAPRI'
+        value: 'CAPRI',
       },
       {
-        key: 'CARIOCA'
+        value: 'CARIOCA',
       },
     ];
   }
 
+  vote() {
+    console.log(this.state);
+  }
+
+  onChangeText(pizzaSelected, idx) {
+    this.setState({pizzaSelected});
+  }
+
   render() {
+    let data = [
+      {
+        value: 'APRESUNTADA',
+      },
+      {
+        value: 'CROCANTE',
+      },
+      {
+        value: 'MILHO',
+      },
+      {
+        value: 'MUSSARELA',
+      },
+      {
+        value: 'TRADICIONAL',
+      },
+      {
+        value: 'ALHO E ÓLEO',
+      },
+      {
+        value: 'BACON',
+      },
+      {
+        value: 'CALABRESA',
+      },
+      {
+        value: 'ESCAROLA',
+      },
+      {
+        value: 'FRANGO',
+      },
+      {
+        value: 'FRANGO C/ CATUPIRY',
+      },
+      {
+        value: 'FRAN-MILHO',
+      },
+      {
+        value: 'MARGUERITA',
+      },
+      {
+        value: 'MEXICANA',
+      },
+      {
+        value: 'NAPOLITANA',
+      },
+      {
+        value: 'PAULISTA',
+      },
+      {
+        value: 'PORTUGUESA',
+      },
+      {
+        value: 'TOSCANA',
+      },
+      {
+        value: 'ALICHE',
+      },
+      {
+        value: 'AMARELINHA',
+      },
+      {
+        value: 'ATUM',
+      },
+      {
+        value: 'CAMPESTRE',
+      },
+      {
+        value: 'CAPRI',
+      },
+      {
+        value: 'CARIOCA',
+      },
+    ];
+
     return (
-      <Text style={styles.header}>
-        Voce pode votar em 3 pizzas de sua preferência.
-      </Text>
+      <View>
+        <Text style={styles.header}>
+          Voce pode votar em 3 pizzas de sua preferência.
+        </Text>
+
+        <Dropdown
+          label='Escolha a pizza que deseja'
+          data={data}
+          onChangeText={this.onChangeText}
+        />
+
+        <Button
+          onPress={ this.vote }
+          title='Votar'
+          color="#841584"
+          accessibilityLabel='Votar'
+        />
+      </View>
     );
   }
 
