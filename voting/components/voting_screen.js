@@ -10,7 +10,80 @@ class VotingScreen extends React.Component {
     }
 
   componentDidMount() {
-
+    this.props.pizzasToVote = [
+      {
+        key: 'APRESUNTADA'
+      },
+      {
+        key: 'CROCANTE'
+      },
+      {
+        key: 'MILHO'
+      },
+      {
+        key: 'MUSSARELA'
+      },
+      {
+        key: 'TRADICIONAL'
+      },
+      {
+        key: 'ALHO E ÓLEO'
+      },
+      {
+        key: 'BACON'
+      },
+      {
+        key: 'CALABRESA'
+      },
+      {
+        key: 'ESCAROLA'
+      },
+      {
+        key: 'FRANGO'
+      },
+      {
+        key: 'FRANGO C/ CATUPIRY'
+      },
+      {
+        key: 'FRAN-MILHO'
+      },
+      {
+        key: 'MARGUERITA'
+      },
+      {
+        key: 'MEXICANA'
+      },
+      {
+        key: 'NAPOLITANA'
+      },
+      {
+        key: 'PAULISTA'
+      },
+      {
+        key: 'PORTUGUESA'
+      },
+      {
+        key: 'TOSCANA'
+      },
+      {
+        key: 'ALICHE'
+      },
+      {
+        key: 'AMARELINHA'
+      },
+      {
+        key: 'ATUM'
+      },
+      {
+        key: 'CAMPESTRE'
+      },
+      {
+        key: 'CAPRI'
+      },
+      {
+        key: 'CARIOCA'
+      },
+    ];
   }
 
   render() {
