@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { StyleSheet, FlatList, ToastAndroid } from 'react-native';
+import { StyleSheet, FlatList, View, Text, Button , Modal } from 'react-native';
 
 import MyListItem from '../../utils/components/my_list_item'
 
@@ -12,10 +12,14 @@ class CarteScreen extends React.Component {
       super(props);
 
       this.click = this.click.bind(this);
+      this.openModal = this.openModal.bind(this);
+      this.closeModal = this.closeModal.bind(this);
     }
 
   componentDidMount() {
     this.setState({
+      ingredients: '',
+      modalVisible: false,
       pizzaCarte: [
         {
           key: 'APRESUNTADA',
@@ -302,26 +306,54 @@ class CarteScreen extends React.Component {
 
   }
 
+  openModal() {
+    this.setState({modalVisible:true});
+  }
+
+  closeModal() {
+    this.setState({modalVisible:false});
+  }
+
   click(id) {
     selected = this.state.pizzaCarte.filter( elem =>{ 
       return elem.key == id;
     });
 
-    ToastAndroid.showWithGravity(
-      selected[0].ingredients,
-      ToastAndroid.SHORT,
-      ToastAndroid.CENTER
-    );
+    this.setState({ingredients: selected[0].ingredients});
+
+    this.openModal();
   }
 
   render() {
     let pizzaCarte = this.state ? this.state.pizzaCarte : [];
+    let modalVisible = this.state ? this.state.modalVisible : false;
+    let ingredients = this.state ? this.state.ingredients : false;
 
     return (
+      <View>
         <FlatList
           data={pizzaCarte}
           renderItem={({item}) => <MyListItem title={item.key} onPressItem={this.click} id={item.key} />}
         />
+
+        <Modal
+              visible={modalVisible}
+              animationType={'slide'}
+              onRequestClose={this.closeModal}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.innerContainer}>
+              <Text>{ingredients}</Text>
+              <Button
+                onPress={this.closeModal}
+                title='Fechar'
+                color="#841584"
+                accessibilityLabel='Fechar'
+              />
+            </View>
+          </View>
+        </Modal>
+      </View>
     );
   }
 
@@ -330,7 +362,15 @@ class CarteScreen extends React.Component {
 const styles = StyleSheet.create({
   header: {
     fontSize: 20,
-  }
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+  },
+  innerContainer: {
+    alignItems: 'center',
+  },
 });
 
 export default connect()(CarteScreen);
