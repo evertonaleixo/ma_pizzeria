@@ -1,23 +1,23 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
 import { routerReducer } from 'react-router-redux'
+import { createLogicMiddleware } from 'redux-logic';
+import arrLogic from './logics'
 
-//const home_counter = require("../home/reducers/home_counter_reducer").default;
-//const carReducer = require("../car/reducers/car_reducer").default;
+const homeReducer = require("../home/reducers/home_reducer").default;
 
 export const rootReducer = combineReducers(
   {
-    routing: routerReducer
+    routing: routerReducer,
+    homeReducer,
   }
 );
 
+const logicMiddleware = createLogicMiddleware(arrLogic, {});
+
 const store =  createStore(rootReducer,// {}
   applyMiddleware(
-     thunk//,
+    logicMiddleware,
   )
 );
-
-// store.dispatch(requestUserInfo());
-// store.dispatch(chatInit());
 
 export default store;

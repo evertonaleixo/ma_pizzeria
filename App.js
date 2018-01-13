@@ -15,6 +15,11 @@ import Voting from './voting/components/voting_screen'
 import store from './store/configureStore'
 
 export default class App extends React.Component {
+  
+  componentDidMount() {
+  
+  }
+
   render() {
     return (
       <Provider store={store}>
