@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-import { fakeAuth } from '../../utils/components/fake-auth';
 import renderIf from '../../utils/components/renderIf';
 
 import checkoutTableAction from '../actions/checkout_table_action'
