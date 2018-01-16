@@ -2,7 +2,7 @@ import { createLogic } from 'redux-logic';
 import axios from 'axios';
 
 const fetchPollsLogic = createLogic({
-  type: '*', // only apply this logic to this type
+  type: '/\ASYNC_/', // only apply this logic to this type
   // cancelType: CANCEL_FETCH_POLLS, // cancel on this type
   latest: true, // only take latest
   process({ getState, action }, dispatch, done) {
